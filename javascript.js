@@ -5,7 +5,7 @@ function computerPlay() {
 
 var items = ['rock', 'paper', 'scissors'];
 
-console.log(computerPlay(items));
+console.log(computerPlay(items) + ' comp input');
 
 
 function promptUser() {
@@ -15,21 +15,22 @@ function promptUser() {
 // user side needs to make sure only correct inputs are received (rock, paper, scissors)
 // if correct input = move on to game. if incorrect = prompt again until correct
 
-function playGame
-(playerSelection = prompt('Rock? Paper? or Scissors?'), computerSelection) {
-    
+function playGame() {
+    let playerSelection = prompt('Rock? Paper? or Scissors?');
     let playerInput = playerSelection.toLowerCase();   
-    
-    if (playerInput !== "rock" || playerInput !== "paper" || playerInput !== "scissors") {
-        promptUser();
-    } else if (playerInput === "rock" || playerInput === "paper" || playerInput === "scissors") {
-        console.log('user submitted correct input');
-    } else {
-        console.log('wrong input');
-    } 
-console.log(playerInput);
-}
+    console.log(playerInput);
 
+    if (playerInput === 'rock' || playerInput === 'paper' || playerInput === 'scissors') {
+        console.log('correct input');
+    } else {         
+        
+
+
+        // (playerInput !== 'rock' || playerInput !== 'paper' || playerInput !== 'scissors')
+        // console.log('incorrect input');
+        
+    }
+}
 
 playGame();
 
