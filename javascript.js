@@ -8,28 +8,43 @@ var items = ['rock', 'paper', 'scissors'];
 console.log(computerPlay(items) + ' comp input');
 
 
-function promptUser() {
-    prompt ('Please check spelling: Rock? Paper? or Scissors?');
-}
-
 // user side needs to make sure only correct inputs are received (rock, paper, scissors)
 // if correct input = move on to game. if incorrect = prompt again until correct
 
-function playGame() {
-    let playerSelection = prompt('Rock? Paper? or Scissors?');
-    let playerInput = playerSelection.toLowerCase();   
-    console.log(playerInput);
+function playGame(playerSelection = prompt('Rock? Paper? or Scissors?'), computerSelection = computerPlay(items))
+    { 
+    console.log(playerSelection);
 
-    if (playerInput === 'rock' || playerInput === 'paper' || playerInput === 'scissors') {
-        console.log('correct input');
-    } else {         
-        
-
-
-        // (playerInput !== 'rock' || playerInput !== 'paper' || playerInput !== 'scissors')
-        // console.log('incorrect input');
-        
+    if (playerSelection.toLowerCase() === 'rock'|| playerSelection.toLowerCase() === 'paper'|| playerSelection.toLowerCase() === 'scissors') {
+        console.log('good input - move on to game');
+    } else if (playerSelection !== 'rock'||'paper'||'scissors') {
+        console.log('bad input = prompt user again');
     }
+
+
+   // let computerSelection = computerPlay(items);
+
+    // if (playerInput !== 'rock'||'paper'||'scissors') {
+    //     promptUser();
+    //     return;
+    // } else {
+    //     console.log('move on');
+    // }
+
+
+    // switch (playerInput) {
+    //     case playerInput != 'rock':
+    //     case playerInput != 'paper':
+    //     case playerInput != 'scissors':
+    //         promptUser();
+    //         break;
+    //     case playerInput = 'rock':
+    //     case playerInput = 'paper':
+    //     case playerInput = 'scissors':
+    //         console.log('move on to game');
+    //     default:
+    //         promptUser();
+    // }
 }
 
 playGame();
