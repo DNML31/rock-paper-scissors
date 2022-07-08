@@ -19,32 +19,9 @@ function playGame(playerSelection = prompt('Rock? Paper? or Scissors?'), compute
         console.log('good input - move on to game');
     } else if (playerSelection !== 'rock'||'paper'||'scissors') {
         console.log('bad input = prompt user again');
+        alert('Please re-enter your choice.');
+        playGame();
     }
-
-
-   // let computerSelection = computerPlay(items);
-
-    // if (playerInput !== 'rock'||'paper'||'scissors') {
-    //     promptUser();
-    //     return;
-    // } else {
-    //     console.log('move on');
-    // }
-
-
-    // switch (playerInput) {
-    //     case playerInput != 'rock':
-    //     case playerInput != 'paper':
-    //     case playerInput != 'scissors':
-    //         promptUser();
-    //         break;
-    //     case playerInput = 'rock':
-    //     case playerInput = 'paper':
-    //     case playerInput = 'scissors':
-    //         console.log('move on to game');
-    //     default:
-    //         promptUser();
-    // }
 }
 
 playGame();
