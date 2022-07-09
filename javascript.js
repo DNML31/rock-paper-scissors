@@ -5,24 +5,22 @@ function computerPlay() {
 
 var items = ['rock', 'paper', 'scissors'];
 
-console.log(computerPlay(items) + ' comp input');
+console.log(computerPlay(items) + ' <- comp input');
 
-
-// user side needs to make sure only correct inputs are received (rock, paper, scissors)
-// if correct input = move on to game. if incorrect = prompt again until correct
-
-function playGame(playerSelection = prompt('Rock? Paper? or Scissors?'), computerSelection = computerPlay(items))
-    { 
-    console.log(playerSelection);
-
-    if (playerSelection.toLowerCase() === 'rock'|| playerSelection.toLowerCase() === 'paper'|| playerSelection.toLowerCase() === 'scissors') {
+//bad inputs recognized, then re-prompt.
+//ties are not accurately caught
+function playGame(playerSelection = prompt('Rock? Paper? or Scissors?'), computerSelection = computerPlay(items)) {
+    
+    if (playerSelection.toLowerCase() === computerPlay()) {
+        console.log('tie');
+    } else if (playerSelection.toLowerCase() === 'rock'|| playerSelection.toLowerCase() === 'paper'|| playerSelection.toLowerCase() === 'scissors') {
         console.log('good input - move on to game');
-    } else if (playerSelection !== 'rock'||'paper'||'scissors') {
+    } else if (playerSelection.toLowerCase() !== 'rock'|| playerSelection.toLowerCase() !== 'paper'|| playerSelection.toLowerCase() !== 'scissors') {
         console.log('bad input = prompt user again');
         alert('Please re-enter your choice.');
         playGame();
-    }
+    }    
 }
 
-playGame();
 
+playGame();
