@@ -7,14 +7,14 @@
 
 
 function computerPlay(items) {
-    let computerSelection = items[Math.floor(Math.random()*items.length)];
+    return computerSelection = items[Math.floor(Math.random()*items.length)];
 }
 var items = ['rock', 'paper', 'scissors'];
-
 
 //keeps getting 'bad input'
 function playGame(playerSelection = prompt('Rock? Paper? or Scissors?'), computerSelection) {
     console.log(playerSelection);
+    console.log(computerPlay(items));
 
     if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'rock') {
         console.log('tie');
@@ -34,10 +34,12 @@ function playGame(playerSelection = prompt('Rock? Paper? or Scissors?'), compute
         console.log('CPU wins');
     } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'paper') {
         console.log('CPU wins');
-    } else if (playerSelection.toLowerCase() != 'rock' || playerSelection.toLowerCase() != 'paper' || playerSelection.toLowerCase() != 'scissors') {
+//switching the || to && recognizes a 'bad input'. but doing this will always trigger 'what happened'
+    } else if (playerSelection.toLowerCase() !== 'rock' && playerSelection.toLowerCase() !== 'paper' 
+        && playerSelection.toLowerCase() !== 'scissors') {
         console.log('bad input');
     } else {
-        console.log('what happened?');
+        // prompt('Rock? Paper? or Scissors?');
     }
 }
 
