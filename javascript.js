@@ -4,39 +4,51 @@ function computerPlay(items) {
 }
 var items = ['rock', 'paper', 'scissors'];
 
-//'bad input' are properly recognized > alert msg > restart function (only once)
-//getting correct winner announcement
-
-function playGame(playerSelection = prompt('Rock? Paper? or Scissors?'), computerSelection) {
+function playRound(playerSelection = prompt('Rock? Paper? or Scissors?'), computerSelection) {
     console.log(playerSelection);
 
     computerSelection = computerPlay(items);
     console.log(computerSelection);    
 
     if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'rock') {
-        console.log('tie');
+        console.log('Tiegame.');
     } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'paper') {
-        console.log('tie');
+        console.log('Tiegame.');
     } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'scissors') {
-        console.log('tie');
+        console.log('Tiegame.');
     } else if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'paper') {
-        console.log('player wins');
+        console.log('Paper beats rock.');
+        console.log('Player wins.');
     } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'scissors') {
-        console.log('player wins');
+        console.log('Scissors beats paper.');
+        console.log('Player wins.');
     } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'rock') {
-        console.log('player wins');
+        console.log('Rock beats scissors.');
+        console.log('Player wins.');
     } else if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'scissors') {
-        console.log('CPU wins');
+        console.log('Rock beats scissors.');
+        console.log('CPU wins.');
     } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'rock') {
-        console.log('CPU wins');
+        console.log('Paper beats rock.');
+        console.log('CPU wins.');
     } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'paper') {
-        console.log('CPU wins');
+        console.log('Scissors beats paper.');
+        console.log('CPU wins.');
     } else if (playerSelection.toLowerCase() !== 'rock' && playerSelection.toLowerCase() !== 'paper' 
         && playerSelection.toLowerCase() !== 'scissors') {
-        alert('Please check spelling.');
-        playGame();
+        alert('Please check spelling and re-enter.');
+        playRound();
         return;    
      }
 }
+playRound();
 
-playGame();
+function game() {
+//need to utilize a loop to make playRound() execute 5 times and keep score
+    // playRound();
+    // playRound();
+    // playRound();
+
+}
+
+//game();
