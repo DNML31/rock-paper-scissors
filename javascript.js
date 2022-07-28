@@ -68,19 +68,20 @@ function playRound(playerSelection = prompt('Rock? Paper? or Scissors?'), comput
     console.log("CPU: " + cpuScore);
 
 }
-//playRound();
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        playRound();
-    }
+// function game() {
+//     for (let i = 0; i < 5; i++) {
+//         playRound();
+//     }
 
-    if (playerScore > cpuScore) {
-        alert('You beat the CPU.');
-    } else if (cpuScore > playerScore) {
-        alert('The CPU beat you.');
-    } else if (playerScore == cpuScore) {
-        alert('It\'s a tie. Play another set.');
-    }
-}
-game();
+//     if (playerScore > cpuScore) {
+//         alert('You beat the CPU.');
+//     } else if (cpuScore > playerScore) {
+//         alert('The CPU beat you.');
+//     } else if (playerScore == cpuScore) {
+//         alert('It\'s a tie. Play another set.');
+//     }
+// }
+// game();
+
+playRound();
