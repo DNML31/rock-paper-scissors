@@ -1,19 +1,52 @@
 // game result alerts
-function playerWin() {
-    alert('You win!');
-    console.log('PLAYER WIN');  
+function playerWin() { 
+
     playerScore++;
+
+    function removeChildNodes() {
+        while (result.firstChild) {
+            result.removeChild(result.firstChild);
+        }
+    }
+    removeChildNodes();
+
+    const playerWin = document.querySelector('#result');
+    const winText = document.createElement('div');
+    winText.textContent = "PLAYER WINS";
+    playerWin.appendChild(winText);
 }
 
 function cpuWin() {
-    alert('CPU win.');
-    console.log('CPU WIN')
+
     cpuScore++;
+
+    function removeChildNodes() {
+        while (result.firstChild) {
+            result.removeChild(result.firstChild);
+        }
+    }
+    removeChildNodes();
+
+    const cpuWin = document.querySelector('#result');
+    const winText = document.createElement('div');
+    winText.textContent = "CPU WINS";
+    cpuWin.appendChild(winText);
 }
 
 function tieGame() {
-    alert('Tiegame.');
-    console.log('TIE')
+
+    function removeChildNodes() {
+        while (result.firstChild) {
+            result.removeChild(result.firstChild);
+        }
+    }
+
+    removeChildNodes();
+
+    const tieGame = document.querySelector('#result');
+    const tieText = document.createElement('div');
+    tieText.textContent = "TIE";
+    tieGame.appendChild(tieText);
 }
 
 //score count
@@ -88,6 +121,14 @@ buttonPushScissors.addEventListener('click', ()=> {
 });
 
 function whatIsScore () {
+
+    // function removeChildNodes() {
+    //     while (result.firstChild) {
+    //         result.removeChild(result.firstChild);
+    //     }
+    // }
+    // removeChildNodes();
+
     const scoreKeep = document.querySelector('#score');
     const score = document.createElement('div');
     score.textContent = scoreCount();
