@@ -35,6 +35,8 @@ function cpuWin() {
 
 function tieGame() {
 
+    tieGames++;
+
     function removeChildNodes() {
         while (result.firstChild) {
             result.removeChild(result.firstChild);
@@ -49,12 +51,23 @@ function tieGame() {
     tieGame.appendChild(tieText);
 }
 
+function thePlay(win, lose) {
+    const phrase = `${win} beats ${lose}.`;
+    const gameDetail = document.querySelector('#gamedetail');
+    const gamePlay = document.createElement('div');
+    gamePlay.textContent = phrase;
+    gameDetail.appendChild(gamePlay);
+}
+
+
+
 //score count
 function scoreCount() {
     var player = ("Player: " + playerScore);
     var cpu = ("CPU: " + cpuScore);
+    var tie = ("Tiegames: " + tieGames);
 
-    return `The score is ${player}, ${cpu}.`;
+    return `The score is ${player}, ${cpu}. ${tie}.`;
 }
 
 // computer's choice
@@ -65,9 +78,14 @@ var items = ['rock', 'paper', 'scissors'];
 
 let playerScore = 0;
 let cpuScore = 0;
+let tieGames = 0;
 
 function playRound(playerSelection = prompt ("rock? paper? scissors?"), computerSelection) {
     computerSelection = computerPlay(items); 
+
+    let Rock;
+    let Paper;
+    let Scissors;
 
     if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'rock') {
         return tieGame();
@@ -76,23 +94,23 @@ function playRound(playerSelection = prompt ("rock? paper? scissors?"), computer
     } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'scissors') {
         tieGame();
     } else if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'paper') {
-        console.log('Paper beats rock. You win.');
         playerWin();
+        thePlay(Paper, Rock);
     } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'scissors') {
-        console.log('Scissors beats paper. You win.');
         playerWin();
+        thePlay(Scissors, Paper);
     } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'rock') {
-        console.log('Rock beats scissors. You win.');
         playerWin();
+        thePlay(Rock, Scissors);
     } else if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'scissors') {
-        console.log('Rock beats scissors. CPU wins.');
         cpuWin();
+        thePlay(Rock, Scissors);
     } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'rock') {
-        console.log('Paper beats rock. CPU wins.');
         cpuWin();
+        thePlay(Paper, Rock);
     } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'paper') {
-        console.log('Scissors beats paper. CPU wins');
         cpuWin();
+        thePlay(Scissors, Paper);
     } else if (playerSelection.toLowerCase() !== 'rock' && playerSelection.toLowerCase() !== 'paper' 
         && playerSelection.toLowerCase() !== 'scissors') {
         alert('Please check spelling and re-enter.');
@@ -122,14 +140,14 @@ buttonPushScissors.addEventListener('click', ()=> {
 
 function whatIsScore () {
 
-    // function removeChildNodes() {
-    //     while (result.firstChild) {
-    //         result.removeChild(result.firstChild);
-    //     }
-    // }
-    // removeChildNodes();
+    function removeChildNodes() {
+        while (scoreboard.firstChild) {
+            scoreboard.removeChild(scoreboard.firstChild);
+        }
+    }
+    removeChildNodes();
 
-    const scoreKeep = document.querySelector('#score');
+    const scoreKeep = document.querySelector('#scoreboard');
     const score = document.createElement('div');
     score.textContent = scoreCount();
     scoreKeep.appendChild(score);
