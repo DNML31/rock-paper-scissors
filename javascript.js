@@ -18,8 +18,10 @@ function tieGame() {
 
 //score count
 function scoreCount() {
-    console.log ("Player: " + playerScore);
-    console.log ("CPU: " + cpuScore);
+    var player = ("Player: " + playerScore);
+    var cpu = ("CPU: " + cpuScore);
+
+    return `The score is ${player}, ${cpu}.`;
 }
 
 // computer's choice
@@ -34,12 +36,8 @@ let cpuScore = 0;
 function playRound(playerSelection = prompt ("rock? paper? scissors?"), computerSelection) {
     computerSelection = computerPlay(items); 
 
-    // console.log(playerSelection);
-    // console.log(computerSelection);
-
     if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'rock') {
         return tieGame();
-
     } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'paper') {
         tieGame();
     } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'scissors') {
@@ -68,31 +66,33 @@ function playRound(playerSelection = prompt ("rock? paper? scissors?"), computer
         playRound();
         return;    
     }
-
-    scoreCount();
+    whatIsScore();
 }
 
 const buttonPushRock = document.querySelector("#rock");
 buttonPushRock.addEventListener('click', ()=> {
     playRound('rock', computerPlay(items));
+    scoreCount();
 });
 
 const buttonPushPaper = document.querySelector('#paper');
 buttonPushPaper.addEventListener('click', ()=> {
     playRound('paper',computerPlay(items));
+    scoreCount();
 });
 
 const buttonPushScissors = document.querySelector('#scissors');
 buttonPushScissors.addEventListener('click', ()=> {
     playRound('scissors',computerPlay(items));
+    scoreCount();
 });
 
-
-const scoreBoard = document.querySelector('#score');
-let score = document.createElement('div');
-scoreBoard.append(scoreCount());
-
-
+function whatIsScore () {
+    const scoreKeep = document.querySelector('#score');
+    const score = document.createElement('div');
+    score.textContent = scoreCount();
+    scoreKeep.appendChild(score);
+}
 
 
 // function game() {
