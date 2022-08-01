@@ -136,15 +136,12 @@ function playRound(playerSelection, computerSelection) {
     whatIsPlay();
 }
 
-
-
 function whoWon (theGoat) {
     const winner = document.querySelector('#theverdict');
     const victor = document.createElement('div');
     victor.textContent = `${theGoat} is the RPS Master!`;
     winner.appendChild(victor);
 }
-
 
 // player button choices
 const buttonPushRock = document.querySelector("#rock");
