@@ -1,86 +1,230 @@
-function playerWin() {
-    alert('You win!');
-    console.log('PLAYER WIN');  
+// game result alerts
+function playerWin() { 
+
     playerScore++;
+
+    function removeChildNodes() {
+        while (result.firstChild) {
+            result.removeChild(result.firstChild);
+        }
+    }
+    removeChildNodes();
+
+    const playerWin = document.querySelector('#result');
+    const winText = document.createElement('div');
+    winText.textContent = "PLAYER WINS";
+    playerWin.appendChild(winText);
+
+    if (playerScore == 5) {
+        whoWon(player);
+    }
 }
 
 function cpuWin() {
-    alert('CPU win.');
-    console.log('CPU WIN')
+
     cpuScore++;
+
+    function removeChildNodes() {
+        while (result.firstChild) {
+            result.removeChild(result.firstChild);
+        }
+    }
+    removeChildNodes();
+
+    const cpuWin = document.querySelector('#result');
+    const winText = document.createElement('div');
+    winText.textContent = "CPU WINS";
+    cpuWin.appendChild(winText);
+
+    if (cpuScore == 5) {
+        whoWon(cpu);
+    }
 }
 
 function tieGame() {
-    alert('Tiegame.');
-    console.log('TIE')
+
+    tieGames++;
+
+    function removeChildNodes() {
+        while (result.firstChild) {
+            result.removeChild(result.firstChild);
+        }
+    }
+
+    removeChildNodes();
+
+    const tieGame = document.querySelector('#result');
+    const tieText = document.createElement('div');
+    tieText.textContent = "TIE";
+    tieGame.appendChild(tieText);
 }
 
+let playerScore = 0;
+let cpuScore = 0;
+let tieGames = 0;
+
+let win;
+let lose;
+
+let player = "PLAYER";
+let cpu = "CPU";
+
+// computer's choice
 function computerPlay(items) {
     return computerSelection = items[Math.floor(Math.random()*items.length)];
 }
 var items = ['rock', 'paper', 'scissors'];
 
-//variables added to keep score
-let playerScore = 0;
-let cpuScore = 0;
+// plays one round
+function playRound(playerSelection, computerSelection) {
+    computerSelection = computerPlay(items); 
 
-function playRound(playerSelection = prompt('Rock? Paper? or Scissors?'), computerSelection) {
-    console.log(playerSelection);
-
-    computerSelection = computerPlay(items);
-    console.log(computerSelection);    
-
-    if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'rock') {
-        // console.log('Tie.');
-        // tieGame();
-        return tieGame();
-
-    } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'paper') {
+    if (computerSelection === 'rock' &&
+    playerSelection.toLowerCase() === 'rock') {
         tieGame();
-    } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'scissors') {
+        win = 'Rock';
+        lose = 'Rock';
+    } else if (computerSelection === 'paper' &&
+    playerSelection.toLowerCase() === 'paper') {
         tieGame();
-    } else if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'paper') {
-        console.log('Paper beats rock. You win.');
+        win = 'Paper';
+        lose = 'Paper';
+    } else if (computerSelection === 'scissors' &&
+    playerSelection.toLowerCase() === 'scissors') {
+        tieGame();
+        win = 'Scissors';
+        lose = 'Scissors';
+    } else if (computerSelection === 'rock' &&
+    playerSelection.toLowerCase() === 'paper') {
         playerWin();
-    } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'scissors') {
-        console.log('Scissors beats paper. You win.');
+        win = 'Paper';
+        lose = 'Rock';
+    } else if (computerSelection === 'paper' &&
+    playerSelection.toLowerCase() === 'scissors') {
         playerWin();
-    } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'rock') {
-        console.log('Rock beats scissors. You win.');
+        win = 'Scissors';
+        lose = 'Paper';
+    } else if (computerSelection === 'scissors' &&
+    playerSelection.toLowerCase() === 'rock') {
         playerWin();
-    } else if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'scissors') {
-        console.log('Rock beats scissors. CPU wins.');
+        win = 'Rock';
+        lose = 'Scissors';
+    } else if (computerSelection === 'rock' &&
+    playerSelection.toLowerCase() === 'scissors') {
         cpuWin();
-    } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'rock') {
-        console.log('Paper beats rock. CPU wins.');
+        win = 'Rock';
+        lose = 'Scissors';
+    } else if (computerSelection === 'paper' &&
+    playerSelection.toLowerCase() === 'rock') {
         cpuWin();
-    } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'paper') {
-        console.log('Scissors beats paper. CPU wins');
+        win = 'Rock';
+        lose = 'Paper';
+    } else if (computerSelection === 'scissors' &&
+    playerSelection.toLowerCase() === 'paper') {
         cpuWin();
-    } else if (playerSelection.toLowerCase() !== 'rock' && playerSelection.toLowerCase() !== 'paper' 
+        win = 'Scissors';
+        lose = 'Paper';
+    } else if (playerSelection.toLowerCase() !== 'rock' &&
+    playerSelection.toLowerCase() !== 'paper' 
         && playerSelection.toLowerCase() !== 'scissors') {
         alert('Please check spelling and re-enter.');
         playRound();
         return;    
     }
-//this reports the score after every round
-    console.log("Player: " + playerScore);
-    console.log("CPU: " + cpuScore);
-
+    whatIsScore();
+    thePlay(win, lose);
+    whatIsPlay();
 }
-//playRound();
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        playRound();
+function whoWon (theGoat) {
+    const winner = document.querySelector('#theverdict');
+    const victor = document.createElement('div');
+    victor.textContent = `${theGoat} is the RPS Master!`;
+    winner.appendChild(victor);
+}
+
+// player button choices
+const buttonPushRock = document.querySelector("#rock");
+buttonPushRock.addEventListener('click', ()=> {
+    playRound('rock', computerPlay(items));
+    scoreCount();
+});
+
+const buttonPushPaper = document.querySelector('#paper');
+buttonPushPaper.addEventListener('click', ()=> {
+    playRound('paper',computerPlay(items));
+    scoreCount();
+});
+
+const buttonPushScissors = document.querySelector('#scissors');
+buttonPushScissors.addEventListener('click', ()=> {
+    playRound('scissors',computerPlay(items));
+    scoreCount();
+});
+
+// score count
+function scoreCount() {
+    var playerPoint = ("Player: " + playerScore);
+    var cpuPoint = ("CPU: " + cpuScore);
+    var tiePoint = ("Tiegames: " + tieGames);
+
+    return `The score is ${playerPoint}, ${cpuPoint}. ${tiePoint}.`;
+}
+
+function whatIsScore () {
+
+    function removeChildNodes() {
+        while (scoreboard.firstChild) {
+            scoreboard.removeChild(scoreboard.firstChild);
+        }
     }
+    removeChildNodes();
 
-    if (playerScore > cpuScore) {
-        alert('You beat the CPU.');
-    } else if (cpuScore > playerScore) {
-        alert('The CPU beat you.');
-    } else if (playerScore == cpuScore) {
-        alert('It\'s a tie. Play another set.');
+    const scoreKeep = document.querySelector('#scoreboard');
+    const score = document.createElement('div');
+    score.textContent = scoreCount();
+    scoreKeep.appendChild(score);
+}
+
+// play by play
+function thePlay(win, lose) {    
+    if (win === lose) {
+        return `${win} can't beat ${lose}.`
+    } else {
+        return `${win} beats ${lose}.`;
     }
 }
-game();
+
+function whatIsPlay () { 
+
+    function removeChildNodes() {
+        while (gamedetail.firstChild) {
+            gamedetail.removeChild(gamedetail.firstChild);
+        }
+    }
+    removeChildNodes();
+
+    const gameDetail = document.querySelector('#gamedetail');
+    const gamePlay = document.createElement('div');
+    gamePlay.textContent = thePlay(win, lose);
+    gameDetail.appendChild(gamePlay);
+}
+
+
+// function game() {
+//     for (let i = 0; i < 5; i++) {
+//         playRound();
+//     }
+
+//     if (playerScore > cpuScore) {
+//         alert('You beat the CPU.');
+//     } else if (cpuScore > playerScore) {
+//         alert('The CPU beat you.');
+//     } else if (playerScore == cpuScore) {
+//         alert('It\'s a tie. Play another set.');
+//     }
+// }
+// game();
+
+
+
