@@ -14,6 +14,10 @@ function playerWin() {
     const winText = document.createElement('div');
     winText.textContent = "PLAYER WINS";
     playerWin.appendChild(winText);
+
+    if (playerScore == 5) {
+        whoWon(player);
+    }
 }
 
 function cpuWin() {
@@ -31,6 +35,10 @@ function cpuWin() {
     const winText = document.createElement('div');
     winText.textContent = "CPU WINS";
     cpuWin.appendChild(winText);
+
+    if (cpuScore == 5) {
+        whoWon(cpu);
+    }
 }
 
 function tieGame() {
@@ -57,6 +65,9 @@ let tieGames = 0;
 
 let win;
 let lose;
+
+let player = "PLAYER";
+let cpu = "CPU";
 
 // computer's choice
 function computerPlay(items) {
@@ -116,6 +127,15 @@ function playRound(playerSelection = prompt ("rock? paper? scissors?"), computer
 }
 
 
+
+function whoWon (theGoat) {
+    const winner = document.querySelector('#theverdict');
+    const victor = document.createElement('div');
+    victor.textContent = `${theGoat} is the RPS Master!`;
+    winner.appendChild(victor);
+}
+
+
 // player button choices
 const buttonPushRock = document.querySelector("#rock");
 buttonPushRock.addEventListener('click', ()=> {
@@ -137,11 +157,11 @@ buttonPushScissors.addEventListener('click', ()=> {
 
 // score count
 function scoreCount() {
-    var player = ("Player: " + playerScore);
-    var cpu = ("CPU: " + cpuScore);
-    var tie = ("Tiegames: " + tieGames);
+    var playerPoint = ("Player: " + playerScore);
+    var cpuPoint = ("CPU: " + cpuScore);
+    var tiePoint = ("Tiegames: " + tieGames);
 
-    return `The score is ${player}, ${cpu}. ${tie}.`;
+    return `The score is ${playerPoint}, ${cpuPoint}. ${tiePoint}.`;
 }
 
 function whatIsScore () {
