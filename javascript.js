@@ -76,46 +76,56 @@ function computerPlay(items) {
 var items = ['rock', 'paper', 'scissors'];
 
 // plays one round
-function playRound(playerSelection = prompt ("rock? paper? scissors?"), computerSelection) {
+function playRound(playerSelection, computerSelection) {
     computerSelection = computerPlay(items); 
 
-    if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'rock') {
+    if (computerSelection === 'rock' &&
+    playerSelection.toLowerCase() === 'rock') {
         tieGame();
         win = 'Rock';
         lose = 'Rock';
-    } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'paper') {
+    } else if (computerSelection === 'paper' &&
+    playerSelection.toLowerCase() === 'paper') {
         tieGame();
         win = 'Paper';
         lose = 'Paper';
-    } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'scissors') {
+    } else if (computerSelection === 'scissors' &&
+    playerSelection.toLowerCase() === 'scissors') {
         tieGame();
         win = 'Scissors';
         lose = 'Scissors';
-    } else if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'paper') {
+    } else if (computerSelection === 'rock' &&
+    playerSelection.toLowerCase() === 'paper') {
         playerWin();
         win = 'Paper';
         lose = 'Rock';
-    } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'scissors') {
+    } else if (computerSelection === 'paper' &&
+    playerSelection.toLowerCase() === 'scissors') {
         playerWin();
         win = 'Scissors';
         lose = 'Paper';
-    } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'rock') {
+    } else if (computerSelection === 'scissors' &&
+    playerSelection.toLowerCase() === 'rock') {
         playerWin();
         win = 'Rock';
         lose = 'Scissors';
-    } else if (computerSelection === 'rock' && playerSelection.toLowerCase() === 'scissors') {
+    } else if (computerSelection === 'rock' &&
+    playerSelection.toLowerCase() === 'scissors') {
         cpuWin();
         win = 'Rock';
         lose = 'Scissors';
-    } else if (computerSelection === 'paper' && playerSelection.toLowerCase() === 'rock') {
+    } else if (computerSelection === 'paper' &&
+    playerSelection.toLowerCase() === 'rock') {
         cpuWin();
         win = 'Rock';
         lose = 'Paper';
-    } else if (computerSelection === 'scissors' && playerSelection.toLowerCase() === 'paper') {
+    } else if (computerSelection === 'scissors' &&
+    playerSelection.toLowerCase() === 'paper') {
         cpuWin();
         win = 'Scissors';
         lose = 'Paper';
-    } else if (playerSelection.toLowerCase() !== 'rock' && playerSelection.toLowerCase() !== 'paper' 
+    } else if (playerSelection.toLowerCase() !== 'rock' &&
+    playerSelection.toLowerCase() !== 'paper' 
         && playerSelection.toLowerCase() !== 'scissors') {
         alert('Please check spelling and re-enter.');
         playRound();
