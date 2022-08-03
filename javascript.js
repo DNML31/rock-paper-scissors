@@ -141,7 +141,7 @@ function playRound(playerSelection, computerSelection) {
 function whoWon (theGoat) {
     const winner = document.querySelector('#theverdict');
     const victor = document.createElement('div');
-    victor.textContent = `${theGoat} is the RPS Master!`;
+    victor.textContent = `${theGoat} is the winner!`;
     winner.appendChild(victor);
 }
 
