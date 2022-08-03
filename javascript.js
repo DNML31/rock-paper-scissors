@@ -79,7 +79,9 @@ var items = ['rock', 'paper', 'scissors'];
 function playRound(playerSelection, computerSelection) {
     computerSelection = computerPlay(items); 
 
-    if (computerSelection === 'rock' &&
+    if (playerScore == 5 || cpuScore == 5) {
+        return;
+    } else if (computerSelection === 'rock' &&
     playerSelection.toLowerCase() === 'rock') {
         tieGame();
         win = 'Rock';
@@ -209,7 +211,6 @@ function whatIsPlay () {
     gamePlay.textContent = thePlay(win, lose);
     gameDetail.appendChild(gamePlay);
 }
-
 
 // function game() {
 //     for (let i = 0; i < 5; i++) {
