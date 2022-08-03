@@ -170,7 +170,7 @@ function scoreCount() {
     var cpuPoint = ("CPU: " + cpuScore);
     var tiePoint = ("Tiegames: " + tieGames);
 
-    return `The score is ${playerPoint}, ${cpuPoint}. ${tiePoint}.`;
+    return `The score is  ${playerPoint} - ${cpuPoint} - ${tiePoint}`;
 }
 
 function whatIsScore () {
