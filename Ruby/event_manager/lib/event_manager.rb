@@ -24,10 +24,51 @@ def clean_phone_number(homephone)
   end
 end
 
-def time_target(regdate)
+def time_target
 
-  DateTime.new
-  DateTime.strptime(regdate, "%m/%d/%Y %k:%M").hour
+  contents = CSV.open('event_attendees.csv',
+    headers: true,
+    header_converters: :symbol
+  )
+  
+  hours = []
+  contents.each do |row|
+    DateTime.new
+    hours.push(DateTime.strptime(row[:regdate], "%m/%d/%Y %k:%M").hour)
+  end
+
+  count = {}
+  count = hours.tally
+  count.values.max    # [1, 3, 2, 2, 1,...1] => [3]
+  busiest_hour = count.key(count.values.max)
+  puts "The most registered hour is #{busiest_hour}."
+
+end
+
+def day_target 
+
+  days = []
+  contents = CSV.open('event_attendees.csv',
+    headers: true,
+    header_converters: :symbol
+  )
+
+  day_num = {
+    0 => 'Sunday', 1 => 'Monday', 2 => 'Tuesday', 3 => 'Wednesday',
+    4 => 'Thursday', 5 => 'Friday', 6 => 'Saturday'
+  }
+
+  contents.each do |row|
+    Date.new
+    days.push(Date.strptime(row[:regdate], "%m/%d/%Y %k:%M").wday)
+  end
+
+  day_count = {}
+  day_count = days.tally
+  day_count.values.max
+
+  busiest_day = day_count.key(day_count.values.max)
+  puts "The most registered day is #{day_num[busiest_day]}."
 
 end
 
@@ -75,8 +116,6 @@ contents.each do |row|
   # zipcode = clean_zipcode(row[:zipcode])
   # p zipcode
 
-  # time = time_target(row[:regdate])
-
   # legislators = legislators_by_zipcode(zipcode)
 
   # form_letter = erb_template.result(binding)
@@ -84,3 +123,6 @@ contents.each do |row|
   # save_thank_you_letter(id, form_letter)
 
 end
+
+time_target
+day_target
