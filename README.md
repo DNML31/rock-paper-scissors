@@ -1,4 +1,2 @@
 # rock-paper-scissors
-TOP assignment 
-
-read me....?
+Rock Paper Scissors create as a part of my studies with The Odin Project.
